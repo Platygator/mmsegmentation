@@ -43,7 +43,7 @@ cfg.model.auxiliary_head.norm_cfg = cfg.norm_cfg
 # modify num classes of the model in decode/auxiliary head
 cfg.model.decode_head.num_classes = 8
 cfg.model.auxiliary_head.num_classes = 8
-cfg.model.backbone.with_cp = True
+# cfg.model.backbone.with_cp = True
 
 # Modify dataset type and path
 cfg.dataset_type = 'StandfordBackgroundDataset'
