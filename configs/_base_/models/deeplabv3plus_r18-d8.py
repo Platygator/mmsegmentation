@@ -1,4 +1,6 @@
 # model settings
+# Copied from deeplabv3plus_r50-d8 and adapted
+# Jan Schiffeler
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
     type='EncoderDecoder',
