@@ -2,9 +2,11 @@
 # By Jan Schiffeler
 dataset_type = 'BoulderDataset'
 data_root = 'data/boulderColabFormat/'
+# data_root = 'data/BoulderDataset/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 # crop_size = (512, 1024)
+# TODO value check crop_size
 crop_size = (256, 256)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -34,7 +36,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=2,
+    samples_per_gpu=1,  # was 2
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
