@@ -1,7 +1,8 @@
 # model settings
 # Copied from deeplabv3plus_r50-d8 and adapted
 # Jan Schiffeler
-norm_cfg = dict(type='SyncBN', requires_grad=True)
+norm_cfg = dict(type='BN', requires_grad=True)  # was SyncBN (used for multi GPU)
+num_classes = 3  # was 19
 model = dict(
     type='EncoderDecoder',
     pretrained='torchvision://resnet18',
@@ -25,7 +26,7 @@ model = dict(
         c1_in_channels=64,
         c1_channels=12,
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=num_classes,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
@@ -38,7 +39,7 @@ model = dict(
         num_convs=1,
         concat_input=False,
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=num_classes,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
