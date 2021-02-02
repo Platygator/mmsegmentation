@@ -252,7 +252,8 @@ class BaseSegmentor(nn.Module):
         # convert to BGR
         color_seg = color_seg[..., ::-1]
 
-        img = img * 0.5 + color_seg * 0.5
+        # img = img * 0.5 + color_seg * 0.5
+        img = color_seg
         img = img.astype(np.uint8)
         # if out_file specified, do not show image in window
         if out_file is not None:
