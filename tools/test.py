@@ -114,8 +114,9 @@ def main():
     model = build_segmentor(cfg.model, test_cfg=cfg.get('test_cfg'))
     checkpoint = load_checkpoint(model, args.checkpoint, map_location='cpu')
     model.CLASSES = checkpoint['meta']['CLASSES']
-    model.PALETTE = checkpoint['meta']['PALETTE']
-    # model.PALETTE = [0, 1, 2]
+    # model.PALETTE = checkpoint['meta']['PALETTE']
+    # model.PALETTE = [[255, 0, 0], [0, 255, 0], [0, 0, 255]]
+    model.PALETTE = [0, 1, 2]
 
     efficient_test = False
     if args.eval_options is not None:
@@ -123,8 +124,8 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
-                                  efficient_test)
+        outputs = single_gpu_test(model, data_loader, show=args.show, out_dir=args.show_dir,
+                                  efficient_test=efficient_test)
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
