@@ -7,7 +7,7 @@ import os.path as osp
 class BoulderDataset(CustomDataset):
     CLASSES = ("background", "stone", "border")
     # PALETTE = [[255, 0, 0], [0, 255, 0], [0, 0, 255]]
-    PALETTE = [0, 1, 2]
+    PALETTE = [[0, 0, 0], [1, 1, 1], [2, 2, 2]]
 
     def __init__(self, split, **kwargs):
         super().__init__(img_suffix='.png', seg_map_suffix='.png',
