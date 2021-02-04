@@ -30,11 +30,6 @@ train_save = 400
 
 
 def create_argparser():
-    """
-    setup all required arguments as in:
-        parser.add_argument('-s', '--side', required=False, default=0, help='some help text')
-    :return: argparse dictionary
-    """
     parser = argparse.ArgumentParser(description='Train a deeplabV3p network')
     parser.add_argument('-c', '--continue', action='store_true', help='continue from latest.pth')
     args = vars(parser.parse_args())
