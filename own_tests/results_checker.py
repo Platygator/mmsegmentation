@@ -1,14 +1,10 @@
 import mmcv
 import numpy as np
 
-img = mmcv.imread('data/BoulderDataset/images/03_02_00750.png')
-res = mmcv.imread('data/results/03_02_00750.png')
+img = mmcv.imread('data/boulderColabFormat/labels/03_02_00750.png')
+res = mmcv.imread('data/results/03_02_00750.png', 0)
 
-diff = img-res
+# res = np.floor(res * res * 63.75).astype('uint8')
+res = np.floor(res * 127.5).astype('uint8')
 
-img_half = np.floor(img/2)
-diff2 = img_half-res
-diff2_amp = np.ceil(diff2*127.5)
-print(diff.any())
-
-mmcv.imshow(diff*127, "results", 2000)
+mmcv.imwrite(res, 'data/ground_truth_03_02_00750.png')

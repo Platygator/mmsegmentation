@@ -1,7 +1,7 @@
 import mmcv
 import os.path as osp
 
-data_root = 'data/BoulderDataset'
+data_root = 'data/boulderColabFormat'
 img_dir = 'images'
 ann_dir = 'labels'
 split_dir = 'splits'
