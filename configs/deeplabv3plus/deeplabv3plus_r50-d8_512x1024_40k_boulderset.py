@@ -9,7 +9,10 @@ norm_cfg = dict(type='BN', requires_grad=True)
 num_classes = 3
 model = dict(
     pretrained='torchvision://resnet18',
-    backbone=dict(type='ResNet', depth=18),
+    backbone=dict(
+        type='ResNet',
+        depth=18,
+        norm_cfg=norm_cfg),
     decode_head=dict(
         c1_in_channels=64,
         c1_channels=12,
