@@ -24,7 +24,7 @@ import argparse
 
 # PARAMETERS
 train_total = 100
-train_log = 20
+train_log = 50
 train_eval = 200
 train_save = 400
 
