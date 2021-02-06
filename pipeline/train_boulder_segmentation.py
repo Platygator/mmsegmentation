@@ -31,7 +31,8 @@ train_save = 400
 
 def create_argparser():
     parser = argparse.ArgumentParser(description='Train a deeplabV3p network')
-    parser.add_argument('-c', '--continue', action='store_true', help='continue from latest.pth')
+    parser.add_argument('-f', '--fresh', action='store_true', help='start new')
+    parser.add_argument('-c', '--continue', required=False, help='continue from file ...')
     args = vars(parser.parse_args())
     return args
 
@@ -46,8 +47,14 @@ if __name__ == '__main__':
     cfg.work_dir = './work_dirs/deeplab_test'
     mk_e(osp.abspath(cfg.work_dir))
 
-    if arg['continue']:
-        cfg.resume_from = f'{cfg.work_dir}/latest.pth'
+    if not arg['fresh']:
+        if arg['continue']:
+            cfg.resume_from = arg['continue']
+        else:
+            cfg.resume_from = f'{cfg.work_dir}/latest.pth'
+        print("[SETTING] Resuming from: ", cfg.resume_from)
+    else:
+        print("[SETTING] Starting a fresh training")
 
     # evaluation, printout and saving settings
     cfg.total_iters = train_total
