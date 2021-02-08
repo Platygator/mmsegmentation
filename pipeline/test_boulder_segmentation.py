@@ -45,7 +45,7 @@ if __name__ == '__main__':
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
 
     if not arg['checkpoint']:
-        checkpoint_file = cfg.work_dir + "/latest.pth"
+        checkpoint_file = "work_dirs/deeplab_test/latest.pth"
     else:
         checkpoint_file = arg['checkpoint']
 
@@ -78,4 +78,5 @@ if __name__ == '__main__':
     outputs = single_gpu_test(model, data_loader, show=False, out_dir=arg['show_dir'],
                               efficient_test=False)   # TODO check efficient_test
 
-    dataset.evaluate(outputs, arg['eval'], {})  # there are possible options
+    # TODO Fix evaluation
+    # dataset.evaluate(outputs, arg['eval'], {})  # there are possible options
