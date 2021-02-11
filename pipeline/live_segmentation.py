@@ -23,9 +23,6 @@ def create_argparser():
     parser = argparse.ArgumentParser(description='Train a deeplabV3p network')
     parser.add_argument('--show_dir', required=False, default='data/results', help='Directory to save evaluated files')
     parser.add_argument('-p', '--checkpoint', required=False, help='Training state to be used')
-    parser.add_argument('--eval', type=str, nargs='+',
-                        help='evaluation metrics, which depends on the dataset, e.g., "mIoU"'
-                             ' for generic datasets, and "cityscapes" for Cityscapes')
     args = vars(parser.parse_args())
     return args
 
@@ -39,7 +36,7 @@ if __name__ == '__main__':
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
 
     if not arg['checkpoint']:
-        checkpoint_file = cfg.work_dir + "/latest.pth"
+        checkpoint_file = "work_dirs/deeplab_test/latest.pth"
     else:
         checkpoint_file = arg['checkpoint']
 
@@ -50,6 +47,6 @@ if __name__ == '__main__':
 
 
     model = init_segmentor(config=cfg, checkpoint=checkpoint_file)
-    img = imread('data/boulderColabFormat/images/03_02_00750.png')
+    img = imread('/home/jan/Datasets/real_world_test/1613059735756667852.png')
     result = inference_segmentor(model, img)
     imwrite(img=result[0], file_path='data/live_test.png')
