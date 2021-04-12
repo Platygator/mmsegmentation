@@ -1,7 +1,7 @@
 # dataset settings adapted from cityscapes.py
 # By Jan Schiffeler
 dataset_type = 'BoulderDataset'
-data_root = 'data/boulderColabFormat/'
+data_root = 'boulderSet/'
 # data_root = 'data/BoulderDataset/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
