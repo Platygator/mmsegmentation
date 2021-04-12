@@ -328,6 +328,7 @@ class CustomDataset(Dataset):
         if not set(metric).issubset(set(allowed_metrics)):
             raise KeyError('metric {} is not supported'.format(metric))
         eval_results = {}
+        class_results = {}
         gt_seg_maps = self.get_gt_seg_maps(efficient_test)
         if self.CLASSES is None:
             num_classes = len(
@@ -374,7 +375,10 @@ class CustomDataset(Dataset):
         for i in range(1, len(summary_table_data[0])):
             eval_results[summary_table_data[0]
                          [i]] = summary_table_data[1][i] / 100.0
+        for i in range(1, len(summary_table_data[0])):
+            class_results[class_table_data[i]
+                         [0]] = class_table_data[i][1] / 100.0
         if mmcv.is_list_of(results, str):
             for file_name in results:
                 os.remove(file_name)
-        return eval_results
+        return eval_results, class_results
