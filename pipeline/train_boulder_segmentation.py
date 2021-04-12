@@ -23,10 +23,10 @@ import os.path as osp
 import argparse
 
 # PARAMETERS
-train_total = 100
-train_log = 50
-train_eval = 200
-train_save = 400
+train_total = 1000
+train_log = 200
+train_eval = 1000
+train_save = 2000
 
 
 def create_argparser():
@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     # create the configuration
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
-    cfg.work_dir = './work_dirs/deeplab_test'
+    cfg.work_dir = './work_dir'
     mk_e(osp.abspath(cfg.work_dir))
 
     if not arg['fresh']:
@@ -78,5 +78,4 @@ if __name__ == '__main__':
     model.PALETTE = datasets[0].PALETTE
 
     # start training
-    train_segmentor(model, datasets, cfg, distributed=False, validate=True,
-                    meta=dict())
+    train_segmentor(model, datasets, cfg, distributed=False, validate=True, meta=dict())

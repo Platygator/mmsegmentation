@@ -45,7 +45,7 @@ if __name__ == '__main__':
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
 
     if not arg['checkpoint']:
-        checkpoint_file = "work_dirs/deeplab_test/latest.pth"
+        checkpoint_file = "work_dir/latest.pth"
     else:
         checkpoint_file = arg['checkpoint']
 
@@ -79,4 +79,4 @@ if __name__ == '__main__':
                               efficient_test=False)   # TODO check efficient_test
 
     # TODO Fix evaluation
-    # dataset.evaluate(outputs, arg['eval'], {})  # there are possible options
+    dataset.evaluate(outputs, arg['eval'], {})  # there are possible options
