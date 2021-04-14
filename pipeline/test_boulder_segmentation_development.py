@@ -18,8 +18,6 @@ import torch
 import os
 import glob
 import numpy as np
-import shutil
-import cv2
 
 from mmcv import Config
 from mmseg.datasets import build_dataset, build_dataloader
@@ -64,8 +62,9 @@ if __name__ == '__main__':
     store_background = []
     store_stone = []
     store_border = []
-    for checkpoint_file in pth_names:
+    for pth_name in pth_names:
 
+        checkpoint_file = f'work_dir/{DATA_SET}/{pth_name}'
         print("[SETTING] Checkpoint used: ", checkpoint_file)
 
         if cfg.get('cudnn_benchmark', False):
@@ -95,12 +94,12 @@ if __name__ == '__main__':
         outputs = single_gpu_test(model, data_loader, show=False, out_dir="work_dir/tmp/",
                                   efficient_test=False)
 
-        res_mean, res_class = dataset.evaluate(outputs, 'mIoU', {})
+        res_mean, res_class = dataset.evaluate_all(outputs, 'mIoU', {})
 
         store_mean.append(res_mean["mIoU"])
         store_background.append(res_class["Background"])
         store_stone.append(res_class["Stone"])
         store_border.append(res_class["Border"])
 
-    np.save(DATA_SET + ".npy", {"Background": store_background, "Stone": store_stone,
+    np.save(f"work_dir/{DATA_SET}.npy", {"Background": store_background, "Stone": store_stone,
                                 "Border": store_border, "Mean": store_mean})
