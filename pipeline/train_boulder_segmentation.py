@@ -24,9 +24,9 @@ import argparse
 
 # PARAMETERS
 train_total = 1000
-train_log = 200
-train_eval = 1000
-train_save = 2000
+train_log = 1000
+train_eval = 5000
+train_save = 10000
 
 
 def create_argparser():
