@@ -78,4 +78,4 @@ if __name__ == '__main__':
     outputs = single_gpu_test(model, data_loader, show=False, out_dir=arg['show_dir'],
                               efficient_test=False)   # TODO check efficient_test
 
-    dataset.evaluate(outputs, arg['eval'], {})  # there are possible options
+    dataset.evaluate_all(outputs, arg['eval'], {})  # there are possible options
