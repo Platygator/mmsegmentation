@@ -380,11 +380,11 @@ class CustomDataset(Dataset):
         return eval_results
 
     def evaluate_all(self,
-                 results,
-                 metric='mIoU',
-                 logger=None,
-                 efficient_test=False,
-                 **kwargs):
+                     results,
+                     metric='mIoU',
+                     logger=None,
+                     efficient_test=False,
+                     **kwargs):
         """Evaluate the dataset.
 
         Args:
