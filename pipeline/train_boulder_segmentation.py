@@ -23,7 +23,7 @@ import os.path as osp
 import argparse
 
 # PARAMETERS
-train_total = 1000
+train_total = 100000
 train_log = 1000
 train_eval = 5000
 train_save = 10000
@@ -32,7 +32,7 @@ train_save = 10000
 def create_argparser():
     parser = argparse.ArgumentParser(description='Train a deeplabV3p network')
     parser.add_argument('-f', '--fresh', action='store_true', help='start new')
-    parser.add_argument('-c', '--continue', required=False, help='continue from file ...')
+    parser.add_argument('-p', '--continue', required=False, help='continue from file ...')
     args = vars(parser.parse_args())
     return args
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
         print("[SETTING] Starting a fresh training")
 
     # evaluation, printout and saving settings
-    cfg.total_iters = train_total
+    cfg.runner.max_iters = train_total
     cfg.log_config.interval = train_log
     cfg.evaluation.interval = train_eval
     cfg.checkpoint_config.interval = train_save

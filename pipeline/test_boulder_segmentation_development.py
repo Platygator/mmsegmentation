@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
     # import configuration
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
-    DATA_SET = "mmseg_tests"
+    DATA_SET = "sim7_half_test"
 
     pth_names = [os.path.basename(k) for k in glob.glob(f'work_dir/{DATA_SET}/*.pth')]
 
@@ -94,12 +94,12 @@ if __name__ == '__main__':
         outputs = single_gpu_test(model, data_loader, show=False, out_dir="work_dir/tmp/",
                                   efficient_test=False)
 
-        res_mean, res_class = dataset.evaluate_all(outputs, 'mIoU', {})
+        res_mean, res_class = dataset.evaluate_all(outputs)
 
         store_mean.append(res_mean["mIoU"])
-        store_background.append(res_class["Background"])
-        store_stone.append(res_class["Stone"])
-        store_border.append(res_class["Border"])
+        store_background.append(res_class["background"])
+        store_stone.append(res_class["stone"])
+        store_border.append(res_class["border"])
 
     np.save(f"work_dir/{DATA_SET}.npy", {"Background": store_background, "Stone": store_stone,
                                 "Border": store_border, "Mean": store_mean})
