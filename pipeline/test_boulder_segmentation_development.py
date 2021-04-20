@@ -15,8 +15,6 @@ Library version:
 """
 
 import torch
-import os
-import glob
 import numpy as np
 
 from mmcv import Config
@@ -54,17 +52,20 @@ if __name__ == '__main__':
 
     # import configuration
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
-    DATA_SET = "sim7_half_test"
+    DATA_SET = "ground_truth"
 
-    pth_names = [os.path.basename(k) for k in glob.glob(f'work_dir/{DATA_SET}/*.pth')]
+    n_epochs = 100_000
+    step_epoch = 10_000
+    # pth_names = [os.path.basename(k) for k in glob.glob(f'work_dir/{DATA_SET}/*.pth')]
 
     store_mean = []
     store_background = []
     store_stone = []
     store_border = []
-    for pth_name in pth_names:
 
-        checkpoint_file = f'work_dir/{DATA_SET}/{pth_name}'
+    for epoch in range(step_epoch, n_epochs + step_epoch, step_epoch):
+
+        checkpoint_file = f'work_dir/{DATA_SET}/iter_{epoch}.pth'
         print("[SETTING] Checkpoint used: ", checkpoint_file)
 
         if cfg.get('cudnn_benchmark', False):
@@ -103,3 +104,5 @@ if __name__ == '__main__':
 
     np.save(f"work_dir/{DATA_SET}.npy", {"Background": store_background, "Stone": store_stone,
                                 "Border": store_border, "Mean": store_mean})
+
+    print("[INFO] Saving ", f"work_dir/{DATA_SET}.npy")
