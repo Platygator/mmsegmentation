@@ -25,25 +25,25 @@ from mmcv.runner import load_checkpoint
 from mmseg.apis import single_gpu_test
 
 
-def IoU(label: np.ndarray, ground_truth: np.ndarray) -> (np.ndarray, float):
-    """
-    Calculate Intersection of Union
-    :param label: generated label
-    :param ground_truth: ground truth to compare to
-    :return: IoU per instance and mean IoU
-    """
-    iou_per_instance = np.zeros(3)
-    for i, instance in enumerate([0, 1, 2]):
-        org_instance = np.zeros_like(ground_truth)
-        org_instance[np.where(ground_truth == instance)] = 1
-        rec_instance = np.zeros_like(label)
-        rec_instance[np.where(label == instance)] = 1
-
-        intersection = np.logical_and(org_instance, rec_instance).astype('uint8')
-        union = np.logical_or(org_instance, rec_instance).astype('uint8')
-        iou_per_instance[i] = np.sum(intersection) / np.sum(union)
-
-    return iou_per_instance, np.mean(iou_per_instance)
+# def IoU(label: np.ndarray, ground_truth: np.ndarray) -> (np.ndarray, float):
+#     """
+#     Calculate Intersection of Union
+#     :param label: generated label
+#     :param ground_truth: ground truth to compare to
+#     :return: IoU per instance and mean IoU
+#     """
+#     iou_per_instance = np.zeros(3)
+#     for i, instance in enumerate([0, 1, 2]):
+#         org_instance = np.zeros_like(ground_truth)
+#         org_instance[np.where(ground_truth == instance)] = 1
+#         rec_instance = np.zeros_like(label)
+#         rec_instance[np.where(label == instance)] = 1
+#
+#         intersection = np.logical_and(org_instance, rec_instance).astype('uint8')
+#         union = np.logical_or(org_instance, rec_instance).astype('uint8')
+#         iou_per_instance[i] = np.sum(intersection) / np.sum(union)
+#
+#     return iou_per_instance, np.mean(iou_per_instance)
 
 
 if __name__ == '__main__':
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     # import configuration
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
-    DATA_SET = "ground_truth"
+    DATA_SET = "first_full_test"
 
     n_epochs = 100_000
     step_epoch = 10_000
