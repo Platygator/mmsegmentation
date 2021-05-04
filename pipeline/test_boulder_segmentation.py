@@ -72,7 +72,7 @@ if __name__ == '__main__':
     try:
         model.PALETTE = checkpoint['meta']['PALETTE']
     except KeyError:
-        model.PALETTE = [[0, 0, 0], [1, 1, 1], [2, 2, 2]]
+        model.PALETTE = [0, 0, 0], [128, 128, 128], [255, 255, 255]
 
     model = MMDataParallel(model, device_ids=[0])
     outputs = single_gpu_test(model, data_loader, show=False, out_dir=arg['show_dir'],
