@@ -1,5 +1,5 @@
 # define the name of the virtual environment directory
-VENV := /home/jschiffeler/.virtualenv/6_mmseg
+VENV := /home/ubuntu/.virtualenv/6_mmseg
 
 # default target, when make executed without arguments
 all: venv
@@ -19,7 +19,7 @@ train_fresh:
 	$(VENV)/bin/python3 ./pipeline/train_boulder_segmentation.py -f
 
 prepare_set:
-	$(VENV)/bin/python3 ./boulderSet/transform_labels.py
+#	$(VENV)/bin/python3 ./boulderSet/transform_labels.py
 	$(VENV)/bin/python3 ./boulderSet/create_split.py
 
 evaluate:
