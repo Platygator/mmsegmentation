@@ -1,8 +1,8 @@
 # dataset settings adapted from cityscapes.py
 # By Jan Schiffeler
 dataset_type = 'BoulderDataset'
-data_root = 'boulderSet/'
-# data_root = 'data/BoulderDataset/'
+# data_root = 'boulderSet/'
+data_root = '/home/ubuntu/dataset/boulderSet'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 # crop_size = (512, 1024)
