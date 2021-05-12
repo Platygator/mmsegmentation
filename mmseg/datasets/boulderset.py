@@ -7,9 +7,10 @@ import os.path as osp
 class BoulderDataset(CustomDataset):
     CLASSES = ("background", "stone", "border", "unknown")
     # PALETTE = [[255, 0, 0], [0, 255, 0], [0, 0, 255]]
-    PALETTE = [[0, 0, 0], [128, 128, 128], [255, 255, 255], [50, 50, 50]]
+    # PALETTE = [[0, 0, 0], [128, 128, 128], [255, 255, 255], [50, 50, 50]]
+    PALETTE = [[0, 0, 0], [1, 1, 1], [2, 2, 2], [3, 3, 3]]
 
     def __init__(self, split, **kwargs):
-        super().__init__(ignore_index=50, img_suffix='.png', seg_map_suffix='.png',
+        super().__init__(ignore_index=3, img_suffix='.png', seg_map_suffix='.png',
                          split=split, **kwargs)
         assert osp.exists(self.img_dir) and self.split is not None
