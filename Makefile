@@ -18,6 +18,9 @@ export PYTHONPATH=$PYTHONPATH:./
 train_fresh:
 	$(VENV)/bin/python3 ./pipeline/train_boulder_segmentation.py -f
 
+train_continue:
+	$(VENV)/bin/python3 ./pipeline/train_boulder_segmentation.py
+
 prepare_set:
 #	$(VENV)/bin/python3 ./boulderSet/transform_labels.py
 	$(VENV)/bin/python3 ./boulderSet/create_split.py
