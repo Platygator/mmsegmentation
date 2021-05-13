@@ -21,14 +21,10 @@ train_fresh:
 train_continue:
 	$(VENV)/bin/python3 ./pipeline/train_boulder_segmentation.py
 
-prepare_set:
-#	$(VENV)/bin/python3 ./boulderSet/transform_labels.py
-	$(VENV)/bin/python3 ./boulderSet/create_split.py
-
 evaluate:
 	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation_development.py
 
-clean:
-	rm -rf ./$(VENV)
-	rm -rf ./hubert.egg-info
-	find -name "*.pyc" -delete
+#clean:
+#	rm -rf ./$(VENV)
+#	rm -rf ./hubert.egg-info
+#	find -name "*.pyc" -delete
