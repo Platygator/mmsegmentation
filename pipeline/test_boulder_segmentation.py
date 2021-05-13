@@ -27,7 +27,7 @@ from mmseg.apis import single_gpu_test
 
 def create_argparser():
     parser = argparse.ArgumentParser(description='Train a deeplabV3p network')
-    parser.add_argument('--show_dir', required=False, default='data/results', help='Directory to save evaluated files')
+    parser.add_argument('--show_dir', required=False, default='work_dir/results', help='Directory to save evaluated files')
     parser.add_argument('-p', '--checkpoint', required=False, help='Training state to be used')
     parser.add_argument('--eval', type=str, nargs='+',
                         help='evaluation metrics, which depends on the dataset, e.g., "mIoU"'
