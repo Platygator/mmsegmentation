@@ -24,6 +24,10 @@ train_continue:
 evaluate:
 	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation_development.py
 
+test:
+	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation.py
+
+
 #clean:
 #	rm -rf ./$(VENV)
 #	rm -rf ./hubert.egg-info
