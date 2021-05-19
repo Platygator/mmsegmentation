@@ -61,8 +61,6 @@ if __name__ == '__main__':
     cfg.log_config.interval = train_log
     cfg.evaluation.interval = train_eval
     cfg.checkpoint_config.interval = train_save
-    crf.data.samples_per_gpu = 1
-    crf.data.workers_per_gpu = 1
 
     # seed
     cfg.seed = 0
