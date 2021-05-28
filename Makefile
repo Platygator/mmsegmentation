@@ -1,5 +1,5 @@
 # define the name of the virtual environment directory
-VENV := /home/ubuntu/.virtualenv/6_mmseg
+VENV := $(HOME)/.virtualenv/6_mmseg
 
 # default target, when make executed without arguments
 all: venv
