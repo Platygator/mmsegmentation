@@ -23,10 +23,10 @@ import os.path as osp
 import argparse
 
 # PARAMETERS
-train_total = 200_000
-train_log = 1000
-train_eval = 5000
-train_save = 10_000
+train_total = 100
+train_log = 1
+train_eval = 5
+train_save = 10
 
 
 def create_argparser():
@@ -57,7 +57,7 @@ if __name__ == '__main__':
         print("[SETTING] Starting a fresh training")
 
     # evaluation, printout and saving settings
-    cfg.runner.max_iters = train_total
+    cfg.runner.max_epochs = train_total
     cfg.log_config.interval = train_log
     cfg.evaluation.interval = train_eval
     cfg.checkpoint_config.interval = train_save
