@@ -36,8 +36,8 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=64,  # was 2
-    workers_per_gpu=64,
+    samples_per_gpu=128,  # was 2
+    workers_per_gpu=128,
     train=dict(
         type=dataset_type,
         data_root=data_root,
