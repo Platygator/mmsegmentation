@@ -23,10 +23,10 @@ import os.path as osp
 import argparse
 
 # PARAMETERS
-train_total = 100000
-train_log = 1000
-train_eval = 5000
-train_save = 10000
+train_total = 100
+train_log = 1
+train_eval = 5
+train_save = 10
 
 
 def create_argparser():

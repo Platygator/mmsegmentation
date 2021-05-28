@@ -32,17 +32,18 @@ model = dict(
         norm_cfg=norm_cfg
     ))
 runner = dict(
-    type='IterBasedRunner', # Type of runner to use (i.e. IterBasedRunner or EpochBasedRunner)
-    max_iters=50000) # Total number of iterations. For EpochBasedRunner use `max_epochs`
-checkpoint_config = dict(  # Config to set the checkpoint hook, Refer to https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/checkpoint.py for implementation.
-    by_epoch=False,  # Whethe count by epoch or not.
-    interval=4000)  # The save interval.
-evaluation = dict(  # The config to build the evaluation hook. Please refer to mmseg/core/evaulation/eval_hook.py for details.
-    interval=4000,  # The interval of evaluation.
+    type='EpochBasedRunner', # Type of runner to use (i.e. IterBasedRunner or EpochBasedRunner)
+    max_epochs=100)  # Total number of iterations. For EpochBasedRunner use `max_epochs`
+checkpoint_config = dict(   # Config to set the checkpoint hook, Refer to https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/checkpoint.py for implementation.
+    by_epoch=True,  # Whethe count by epoch or not.
+    interval=10)  # The save interval.
+evaluation = dict(   # The config to build the evaluation hook. Please refer to mmseg/core/evaulation/eval_hook.py for details.
+    interval=4000,
+    by_epoch=True,  # The interval of evaluation.
     metric='mIoU')
 log_config = dict(  # config to register logger hook
-    interval=50,  # Interval to print the log
+    interval=1,  # Interval to print the log
     hooks=[
         # dict(type='TensorboardLoggerHook')  # The Tensorboard logger is also supported
-        dict(type='TextLoggerHook', by_epoch=False)
+        dict(type='TextLoggerHook', by_epoch=True)
     ])
