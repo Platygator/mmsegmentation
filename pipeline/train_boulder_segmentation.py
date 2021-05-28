@@ -57,7 +57,7 @@ if __name__ == '__main__':
         print("[SETTING] Starting a fresh training")
 
     # evaluation, printout and saving settings
-    cfg.runner.max_iters = train_total
+    cfg.runner.max_epochs = train_total
     cfg.log_config.interval = train_log
     cfg.evaluation.interval = train_eval
     cfg.checkpoint_config.interval = train_save
