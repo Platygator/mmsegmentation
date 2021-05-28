@@ -2,8 +2,8 @@ _base_ = [
     # '../_base_/models/deeplabv3plus_r18-d8.py',
     '../_base_/models/deeplabv3plus_r50-d8.py',
     '../_base_/datasets/boulderset.py',
-    '../_base_/default_runtime.py',
-    '../_base_/schedules/schedule_40k.py'
+    # '../_base_/default_runtime.py',
+    # '../_base_/schedules/schedule_40k.py'
 ]
 
 norm_cfg = dict(type='BN', requires_grad=True)
@@ -31,6 +31,12 @@ model = dict(
         num_classes=num_classes,
         norm_cfg=norm_cfg
     ))
+
+optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0005)
+optimizer_config = dict()
+# learning policy
+lr_config = dict(policy='poly', power=0.9, min_lr=1e-4, by_epoch=True)
+
 runner = dict(
     type='EpochBasedRunner', # Type of runner to use (i.e. IterBasedRunner or EpochBasedRunner)
     max_epochs=100)  # Total number of iterations. For EpochBasedRunner use `max_epochs`
@@ -47,3 +53,10 @@ log_config = dict(  # config to register logger hook
         # dict(type='TensorboardLoggerHook')  # The Tensorboard logger is also supported
         dict(type='TextLoggerHook', by_epoch=True)
     ])
+# yapf:enable
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = None
+resume_from = None
+workflow = [('train', 1)]
+cudnn_benchmark = True
