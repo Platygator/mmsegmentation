@@ -7,7 +7,7 @@ _base_ = [
 ]
 
 norm_cfg = dict(type='BN', requires_grad=True)
-num_classes = 3
+num_classes = 4
 model = dict(
     pretrained='torchvision://resnet18',
     backbone=dict(
