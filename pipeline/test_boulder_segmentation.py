@@ -69,6 +69,7 @@ if __name__ == '__main__':
     # load checkpoint
     checkpoint = load_checkpoint(model, checkpoint_file, map_location='cpu')
     model.CLASSES = checkpoint['meta']['CLASSES']
+    print(model.CLASSES)
     try:
         model.PALETTE = checkpoint['meta']['PALETTE']
     except KeyError:
