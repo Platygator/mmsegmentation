@@ -54,8 +54,8 @@ if __name__ == '__main__':
     cfg = Config.fromfile('configs/deeplabv3plus/deeplabv3plus_r50-d8_512x1024_40k_boulderset.py')
     DATA_SET = "first_full_test"
 
-    n_epochs = 100_000
-    step_epoch = 10_000
+    n_epochs = 260
+    step_epoch = 10
     # pth_names = [os.path.basename(k) for k in glob.glob(f'work_dir/{DATA_SET}/*.pth')]
 
     store_mean = []
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     for epoch in range(step_epoch, n_epochs + step_epoch, step_epoch):
 
-        checkpoint_file = f'work_dir/{DATA_SET}/iter_{epoch}.pth'
+        checkpoint_file = f'work_dir/{DATA_SET}/epoch_{epoch}.pth'
         print("[SETTING] Checkpoint used: ", checkpoint_file)
 
         if cfg.get('cudnn_benchmark', False):
