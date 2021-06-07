@@ -20,6 +20,7 @@ from mmseg.datasets import build_dataset
 from mmseg.models import build_segmentor
 
 import os.path as osp
+import os.readlink as readlink
 import argparse
 
 # PARAMETERS
@@ -50,9 +51,10 @@ if __name__ == '__main__':
     if not arg['fresh']:
         if arg['continue']:
             cfg.resume_from = arg['continue']
+            print("[SETTING] Resuming from: ", cfg.resume_from)
         else:
             cfg.resume_from = f'{cfg.work_dir}/latest.pth'
-        print("[SETTING] Resuming from: ", cfg.resume_from)
+            print("[SETTING] Resuming from: ", readlink(cfg.resume_from))
     else:
         print("[SETTING] Starting a fresh training")
 
