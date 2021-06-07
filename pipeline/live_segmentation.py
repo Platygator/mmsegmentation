@@ -47,6 +47,6 @@ if __name__ == '__main__':
 
 
     model = init_segmentor(config=cfg, checkpoint=checkpoint_file)
-    img = imread('/home/jan/Datasets/real_world_test/1613059735756667852.png')
+    img = imread('/home/ubuntu/datasets/real_1_full_size/3.png')
     result = inference_segmentor(model, img)
-    imwrite(img=result[0], file_path='data/live_test.png')
+    imwrite(img=result[0], file_path='work_dir/live_test.png')

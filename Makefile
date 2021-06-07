@@ -27,6 +27,9 @@ evaluate:
 test:
 	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation.py --eval mIoU
 
+real_test:
+	$(VENV)/bin/python3 ./pipeline/live_segmentation.py
+
 
 #clean:
 #	rm -rf ./$(VENV)
