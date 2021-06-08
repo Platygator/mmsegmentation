@@ -21,9 +21,9 @@ model = dict(
         channels=128,
         num_classes=num_classes,
         norm_cfg=norm_cfg,
-        # loss_decode=dict(
-        #     type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0, ignore_index=3
-        #     class_weight=[0.98, 1.0, 1.02, 1.0])
+        loss_decode=dict(
+            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0, ignore_index=3,
+            class_weight=[0.98, 1.0, 1.02, 1.0])
     ),
     auxiliary_head=dict(
         in_channels=256,
