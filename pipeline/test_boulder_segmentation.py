@@ -68,11 +68,13 @@ if __name__ == '__main__':
 
     # load checkpoint
     checkpoint = load_checkpoint(model, checkpoint_file, map_location='cpu')
-    model.CLASSES = checkpoint['meta']['CLASSES']
-    try:
-        model.PALETTE = checkpoint['meta']['PALETTE']
-    except KeyError:
-        model.PALETTE = [[0, 0, 0], [128, 128, 128], [255, 255, 255], [50, 50, 50]]
+    model.CLASSES = datasets.CLASSES
+    model.PALETTE = datasets.PALETTE
+    # model.CLASSES = checkpoint['meta']['CLASSES']
+    # try:
+    #     model.PALETTE = checkpoint['meta']['PALETTE']
+    # except KeyError:
+    #     model.PALETTE = [[0, 0, 0], [128, 128, 128], [255, 255, 255], [50, 50, 50]]
 
     model = MMDataParallel(model, device_ids=[0])
     outputs = single_gpu_test(model, data_loader, show=False, out_dir=arg['show_dir'],
