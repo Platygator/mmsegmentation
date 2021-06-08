@@ -68,8 +68,8 @@ if __name__ == '__main__':
 
     # load checkpoint
     checkpoint = load_checkpoint(model, checkpoint_file, map_location='cpu')
-    model.CLASSES = datasets.CLASSES
-    model.PALETTE = datasets.PALETTE
+    model.CLASSES = dataset.CLASSES
+    model.PALETTE = dataset.PALETTE
     # model.CLASSES = checkpoint['meta']['CLASSES']
     # try:
     #     model.PALETTE = checkpoint['meta']['PALETTE']
