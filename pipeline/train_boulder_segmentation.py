@@ -80,6 +80,7 @@ if __name__ == '__main__':
     model.PALETTE = datasets[0].PALETTE
 
     print(model.PALETTE)
+    print(datasets[0].ignore_index)
 
     # start training
     train_segmentor(model, datasets, cfg, distributed=False, validate=True, meta=dict())
