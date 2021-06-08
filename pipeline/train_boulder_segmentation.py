@@ -79,5 +79,7 @@ if __name__ == '__main__':
     model.CLASSES = datasets[0].CLASSES
     model.PALETTE = datasets[0].PALETTE
 
+    print(model.PALETTE)
+
     # start training
     train_segmentor(model, datasets, cfg, distributed=False, validate=True, meta=dict())
