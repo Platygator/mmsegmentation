@@ -20,7 +20,7 @@ from mmseg.datasets import build_dataset
 from mmseg.models import build_segmentor
 
 import os.path as osp
-import os.readlink as readlink
+from os import readlink
 import argparse
 
 # PARAMETERS
