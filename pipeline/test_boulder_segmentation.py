@@ -76,6 +76,6 @@ if __name__ == '__main__':
 
     model = MMDataParallel(model, device_ids=[0])
     outputs = single_gpu_test(model, data_loader, show=False, out_dir=arg['show_dir'],
-                              efficient_test=False)   # TODO check efficient_test
+                              efficient_test=False)
 
     _, _ = dataset.evaluate_all(outputs, arg['eval'], {})  # there are possible options

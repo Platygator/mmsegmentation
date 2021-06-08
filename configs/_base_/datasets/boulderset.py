@@ -5,6 +5,7 @@ dataset_type = 'BoulderDataset'
 data_root = '/home/ubuntu/dataset/boulderSet/'
 img_scale = (752, 480)
 # img_scale = (1440, 1080)
+# TODO why does that change so much?
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 # crop_size = (512, 1024)
@@ -18,7 +19,7 @@ train_pipeline = [
     dict(type='RandomFlip', prob=0.5),
     dict(type='PhotoMetricDistortion'),
     dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size=crop_size, pad_val=0, seg_pad_val=255),  # was 255 not 3
+    dict(type='Pad', size=crop_size, pad_val=0, seg_pad_val=255),  # TODO what is that and should it be 3 (unknown)
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_semantic_seg']),
 ]
