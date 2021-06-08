@@ -30,7 +30,7 @@ model = dict(
         channels=64,
         num_classes=num_classes,
         norm_cfg=norm_cfg,
-        loss_decode = dict(
+        loss_decode=dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4,
             class_weight=[0.98, 1.0, 1.02, 1.0])
     ))
