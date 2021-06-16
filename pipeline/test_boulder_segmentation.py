@@ -27,11 +27,7 @@ from mmseg.apis import single_gpu_test
 
 def create_argparser():
     parser = argparse.ArgumentParser(description='Train a deeplabV3p network')
-    parser.add_argument('--show_dir', required=False, default='work_dir/results', help='Directory to save evaluated files')
     parser.add_argument('-p', '--checkpoint', required=False, help='Training state to be used')
-    parser.add_argument('--eval', type=str, nargs='+',
-                        help='evaluation metrics, which depends on the dataset, e.g., "mIoU"'
-                             ' for generic datasets, and "cityscapes" for Cityscapes')
     args = vars(parser.parse_args())
     return args
 
@@ -57,8 +53,8 @@ if __name__ == '__main__':
     dataset = build_dataset(cfg.data.test)
     data_loader = build_dataloader(
         dataset,
-        samples_per_gpu=1,
-        workers_per_gpu=1,
+        samples_per_gpu=cfg.data.samples_per_gpu,  # changed from 1
+        workers_per_gpu=cfg.data.workers_per_gpu,
         dist=False,
         shuffle=False)
 
@@ -76,6 +72,3 @@ if __name__ == '__main__':
                               efficient_test=False)
 
     res_mean, res_class = dataset.evaluate_all(outputs)
-
-    print(res_mean)
-    print(res_class)
