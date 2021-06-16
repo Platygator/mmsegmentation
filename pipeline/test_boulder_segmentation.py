@@ -57,7 +57,7 @@ if __name__ == '__main__':
     dataset = build_dataset(cfg.data.test)
     data_loader = build_dataloader(
         dataset,
-        samples_per_gpu=1,  # changed from 1
+        samples_per_gpu=1,
         workers_per_gpu=1,
         dist=False,
         shuffle=False)
@@ -70,14 +70,12 @@ if __name__ == '__main__':
     checkpoint = load_checkpoint(model, checkpoint_file, map_location='cpu')
     model.CLASSES = dataset.CLASSES
     model.PALETTE = dataset.PALETTE
-    # model.CLASSES = checkpoint['meta']['CLASSES']
-    # try:
-    #     model.PALETTE = checkpoint['meta']['PALETTE']
-    # except KeyError:
-    #     model.PALETTE = [[0, 0, 0], [128, 128, 128], [255, 255, 255], [50, 50, 50]]
 
     model = MMDataParallel(model, device_ids=[0])
-    outputs = single_gpu_test(model, data_loader, show=False, out_dir=arg['show_dir'],
+    outputs = single_gpu_test(model, data_loader, show=False, out_dir="work_dir/results/",
                               efficient_test=False)
 
-    _, _ = dataset.evaluate_all(outputs, arg['eval'], {})  # there are possible options
+    res_mean, res_class = dataset.evaluate_all(outputs)
+
+    print(res_mean)
+    print(res_class)
