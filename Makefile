@@ -25,7 +25,7 @@ evaluate:
 	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation_development.py
 
 test:
-	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation.py --eval mIoU
+	$(VENV)/bin/python3 ./pipeline/test_boulder_segmentation.py
 
 real_test:
 	$(VENV)/bin/python3 ./pipeline/live_segmentation.py
