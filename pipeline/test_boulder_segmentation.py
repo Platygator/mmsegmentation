@@ -53,8 +53,8 @@ if __name__ == '__main__':
     dataset = build_dataset(cfg.data.test)
     data_loader = build_dataloader(
         dataset,
-        samples_per_gpu=cfg.data.samples_per_gpu,  # changed from 1
-        workers_per_gpu=cfg.data.workers_per_gpu,
+        samples_per_gpu=1,
+        workers_per_gpu=1,
         dist=False,
         shuffle=False)
 
