@@ -71,4 +71,4 @@ if __name__ == '__main__':
     outputs = single_gpu_test(model, data_loader, show=False, out_dir="work_dir/results/",
                               efficient_test=False)
 
-    res_mean, res_class = dataset.evaluate_all(outputs)
+    res_mean, res_class = dataset.evaluate_all(outputs, num_classes=3)

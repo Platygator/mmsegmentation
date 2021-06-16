@@ -384,7 +384,7 @@ class CustomDataset(Dataset):
                      metric='mIoU',
                      logger=None,
                      efficient_test=False,
-
+                     num_classes = None,
                      **kwargs):
         """Evaluate the dataset.
 
@@ -408,12 +408,12 @@ class CustomDataset(Dataset):
         class_results = {}
         gt_seg_maps = self.get_gt_seg_maps(efficient_test)
         print(self.CLASSES)
-        if self.CLASSES is None:
-            num_classes = len(
-                reduce(np.union1d, [np.unique(_) for _ in gt_seg_maps]))
-        else:
-            num_classes = len(self.CLASSES)
-        print(self.CLASSES)
+        if num_classes is None:
+            if self.CLASSES is None:
+                num_classes = len(
+                    reduce(np.union1d, [np.unique(_) for _ in gt_seg_maps]))
+            else:
+                num_classes = len(self.CLASSES)
         ret_metrics = eval_metrics(
             results,
             gt_seg_maps,

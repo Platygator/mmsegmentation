@@ -92,7 +92,7 @@ if __name__ == '__main__':
         outputs = single_gpu_test(model, data_loader, show=False, out_dir="work_dir/tmp/",
                                   efficient_test=False)
 
-        res_mean, res_class = dataset.evaluate_all(outputs)
+        res_mean, res_class = dataset.evaluate_all(outputs, num_classes=3)
 
         store_mean.append(res_mean["mIoU"])
         store_background.append(res_class["background"])
